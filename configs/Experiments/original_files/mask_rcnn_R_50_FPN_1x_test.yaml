@@ -1,0 +1,57 @@
+# The 1X Training regiment here initially assumed 90000 * 16 images being seen.
+# This comes to be ~12 COCO epochs as stated  in the Model2 Detectron zoo
+# From my calculations, it would be ~12.2 epochs:  90000 * 16 / 118000
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  BACKBONE:
+    FREEZE: True
+  ROI_HEADS:
+    NUM_CLASSES: 2
+    FREEZE_BOX_HEAD: False
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: False
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: True
+    FREEZE: True
+DATASETS:
+  TRAIN: ('TestSmallCOCO',)
+  TEST: ('TestSmallCOCO_test',)
+# COMMENT
+#TEST:
+#  EVAL_PERIOD: 1
+# UNCOMMENT
+SOLVER:
+# Values determined by taking the original values, dividing the LR by 4 and multiplying iterations by 4
+# This follows the learning rate rule.
+# BEGIN TEST CONFIG
+  BASE_LR: 0.01
+  IMS_PER_BATCH: 2
+  STEPS: (15000, 20000)
+  MAX_ITER: 22500
+#END TEST CONFIG
+# TODO(DAN): BEGIN UNCOMMENT ME
+#  BASE_LR: 0.01
+#  IMS_PER_BATCH: 8
+#  STEPS: (15000, 20000)
+#  MAX_ITER: 22500
+# TODO(DAN): End uncomment me
+# Original values:
+# --------------------
+# IMS_PER_BATCH: 16
+# BASE_LR: 0.02
+# STEPS: (60000, 80000)
+# MAX_ITER: 90000
+# --------------------
+# From few-shot-object-detection paper:
+#  IMS_PER_BATCH: 16
+#  STEPS: (85000, 100000)
+#  MAX_ITER: 110000
+# --------------------
+#VIS_PERIOD: 1
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn_R_50_FPN_test"

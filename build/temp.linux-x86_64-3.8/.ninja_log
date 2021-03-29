@@ -1,0 +1,6 @@
+# ninja log v5
+0	5889	1616959858267608155	/home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o	78c32be468625fa8
+0	6611	1616959858991612059	/home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o	b8092d36caf2a5ab
+1	8350	1616959860727621411	/home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o	b9cf079843cd790
+0	8369	1616959860747621518	/home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlign/ROIAlign_cpu.o	31fdab0552857c00
+0	18710	1616959871083676916	/home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/vision.o	2060348c919021c6

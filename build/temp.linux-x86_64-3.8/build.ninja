@@ -1,0 +1,24 @@
+ninja_required_version = 1.3
+cxx = c++
+
+cflags = -pthread -B /home/danganea/anaconda3/envs/paperenv/compiler_compat -Wl,--sysroot=/ -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc -I/home/danganea/anaconda3/envs/paperenv/lib/python3.8/site-packages/torch/include -I/home/danganea/anaconda3/envs/paperenv/lib/python3.8/site-packages/torch/include/torch/csrc/api/include -I/home/danganea/anaconda3/envs/paperenv/lib/python3.8/site-packages/torch/include/TH -I/home/danganea/anaconda3/envs/paperenv/lib/python3.8/site-packages/torch/include/THC -I/home/danganea/anaconda3/envs/paperenv/include/python3.8 -c
+post_cflags = -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+
+
+build /home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/vision.o: compile /home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/vision.cpp
+build /home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o: compile /home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.cpp
+build /home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlign/ROIAlign_cpu.o: compile /home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlign/ROIAlign_cpu.cpp
+build /home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o: compile /home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.cpp
+build /home/danganea/Desktop/paper/iMTFA_code/build/temp.linux-x86_64-3.8/home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o: compile /home/danganea/Desktop/paper/iMTFA_code/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.cpp
+
+
+
+
+

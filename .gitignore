@@ -1,0 +1,3 @@
+datasets/coco
+datasets/cocosplit
+detectron2/model_zoo/configs

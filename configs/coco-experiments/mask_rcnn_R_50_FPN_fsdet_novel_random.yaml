@@ -1,0 +1,36 @@
+# Initialziing this gives us random weights for the predictor head ("Since model_reset_remove.pth")
+# has those reset. We can take these random weights and combine them with fsdet_cos weights to form
+# the "base-only" model, since only the weights of the base model would have been trained.
+
+# Alternatively should we just have a Base-Train-Only that is only the results for training
+# on the base dataset?
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+#  WEIGHTS: "checkpoints/coco/faster_rcnn_R_50_FPN_cls_ag_b/model_reset_remove.pth"
+  WEIGHTS: 'checkpoints/coco/faster_rcnn_R_50_FPN_fc_fsdet_base/model_reset_remove.pth'
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 20
+    FREEZE_BOX_HEAD: True
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: False
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+    FREEZE_WITHOUT_PREDICTOR: True
+  BACKBONE:
+    FREEZE: True
+DATASETS:
+  TRAIN: ('coco_trainval_novel_5shot_seed9',)
+  TEST: ('coco_test_novel',)
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 0.0000001
+  STEPS: (20000,)
+  MAX_ITER: 10
+  CHECKPOINT_PERIOD: 1500
+  WARMUP_ITERS: 0
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/fsdet_novel_random"

@@ -1,0 +1,41 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 60
+#    OUTPUT_LAYER: "CosineSimOutputLayers"
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: False
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False
+DATASETS:
+  TRAIN: ('coco_trainval_base',)
+  TEST: ('coco_test_base',)
+SOLVER:
+  # Values from  fullclsag_base
+  BASE_LR: 0.01
+  IMS_PER_BATCH: 8
+  STEPS: (170000, 200000)
+  MAX_ITER: 220000
+  CHECKPOINT_PERIOD: 10000
+#  BASE_LR: 0.005
+#  IMS_PER_BATCH: 4
+#  STEPS: (240000, 320000)
+#  MAX_ITER: 360000
+# Original values:
+# --------------------
+# IMS_PER_BATCH: 16
+# BASE_LR: 0.02
+# STEPS: (60000, 80000)
+# MAX_ITER: 90000
+# --------------------
+# From few-shot-object-detection paper:
+#  IMS_PER_BATCH: 16
+#  STEPS: (85000, 100000)
+#  MAX_ITER: 110000
+# --------------------
+#OUTPUT_DIR: "checkpoints/coco/faster_rcnn_R_50_FPN_cls_ag_b"
+OUTPUT_DIR: "checkpoints/nfsmirror/faster_rcnn_R_50_FPN_fc_fsdet_base"

@@ -1,0 +1,42 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "checkpoints/coco/faster_rcnn_R_50_FPN_fc_fsdet_base/model_final.pth"
+  BACKBONE:
+    FREEZE: true
+  MASK_ON: true
+  PROPOSAL_GENERATOR:
+    FREEZE: true
+  RESNETS:
+    DEPTH: 50
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: False
+  ROI_HEADS:
+    FREEZE_BOX_HEAD: true
+    NUM_CLASSES: 80
+    # OUTPUT_LAYER: "CosineSimOutputLayers"
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: False 
+    FREEZE: true
+DATASETS:
+  TRAIN: ('coco_trainval_all_1shot_seed9',)
+  TEST: ('coco_test_all',)
+SOLVER:
+# Two GPU 5-shot settings.
+#    BASE_LR: 0.005
+#  CHECKPOINT_PERIOD: 300
+#    IMS_PER_BATCH: 8
+#    MAX_ITER: 3000
+#    STEPS: !!python/tuple
+#      - 20000
+#    WARMUP_ITERS: 0
+# End two-GPU 5-shot settings
+# Our settings:
+    IMS_PER_BATCH: 8
+    BASE_LR: 0.005
+    STEPS: (10000,)
+    MAX_ITER: 1500
+    CHECKPOINT_PERIOD: 500
+    WARMUP_ITERS: 0
+# End our settings
+# OUTPUT_DIR: "checkpoints/coco/faster_rcnn/mask_rcnn_R_50_FPN_fullclsag_metric_finetunedw_cos_bh_all_1shot":w
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/mask_rcnn_R_50_FPN_fsdet_combined_weights_all_1shot"

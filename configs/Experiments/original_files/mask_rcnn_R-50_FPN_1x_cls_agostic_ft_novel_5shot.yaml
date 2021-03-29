@@ -1,0 +1,46 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "checkpoints/coco/faster_rcnn_R_50_FPN_cls_ag_b/model_reset_remove.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 20
+    FREEZE_BOX_HEAD: True
+  PROPOSAL_GENERATOR:
+    FREEZE: True
+  ROI_BOX_HEAD:
+    CLS_AGNOSTIC_BBOX_REG: False
+  ROI_MASK_HEAD:
+    CLS_AGNOSTIC_MASK: True
+    FREEZE: True
+  BACKBONE:
+    FREEZE: True
+DATASETS:
+  TRAIN: ('coco_trainval_novel_5shot_seed1',)
+  TEST: ('coco_test_novel',)
+SOLVER:
+# Berkeley settings:
+#  IMS_PER_BATCH: 16
+#  BASE_LR: 0.01
+#  STEPS: (10000,)
+#  MAX_ITER: 1500
+# End Berkeley settings
+# Settings in Berkeley * 2 , LR / 2
+#  IMS_PER_BATCH: 8
+#  BASE_LR: 0.005
+#  STEPS: (20000,)
+#  MAX_ITER: 3000
+#  CHECKPOINT_PERIOD: 500
+#  WARMUP_ITERS: 0
+# End settings in Berkeley  *2, LR /2
+
+# Test settings
+  IMS_PER_BATCH: 4
+  BASE_LR: 0.005
+  STEPS: (20000,)
+  MAX_ITER: 5
+  CHECKPOINT_PERIOD: 500
+  WARMUP_ITERS: 0
+# End test settings
+OUTPUT_DIR: "checkpoints/coco/faster_rcnn/faster_rcnn_R_101_FPN_ft_novel_5shot_test"
