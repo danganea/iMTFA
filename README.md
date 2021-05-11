@@ -62,7 +62,11 @@ for the One-Shot-Cosine and the `_metric_avg_FC` experiments are for the One-Sho
 
 ## Models
 
-We are currently looking into storage options for the models. These are around 300GB.
+Models temporarily available here:
+
+https://1drv.ms/u/s!Ako0GB-Fly5dgaI6a9w7V7qGexkiiA?e=UUzeYV
+
+Note: Not 100% of the models here are in the paper. The naming scheme follows the naming scheme above. You'll notice that in order to have a fair comparison between a first and second stage of training, we use a 'moreiters' setup for the first stage. This is to account for a larger number of iteration steps when training. In practice, we notice that training the cosine head for more iterations does help a bit, but not enough vs the two-stage approach.
 
 ### Running the scripts
 
