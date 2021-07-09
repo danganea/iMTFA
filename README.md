@@ -1,7 +1,17 @@
 ## iMTFA and MTFA
-This README is still a work in progress, expect a refactor very soon.
 
+This is the code for the paper "Incremental Few-Shot Instance Segmentation", presented at CVPR2021.
 
+```
+@InProceedings{Ganea_2021_CVPR,
+    author    = {Ganea, Dan Andrei and Boom, Bas and Poppe, Ronald},
+    title     = {Incremental Few-Shot Instance Segmentation},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2021},
+    pages     = {1185-1194}
+}
+```
 
 This code is based on Detectron2 and parts of TFA's source code. We have edited the detectron2 source code to better match the few-shot instance segmentation task.
 
@@ -82,6 +92,11 @@ We use the same `datasets` folder used in Detectron2 and TFA. Download and unzip
 
 Also, setup a `coco` directory in `datasets`, exactly the same way as TFA. For this, just download COCO2014 train + val and place them in trainval, similarly download COCO2014 test.
 
+Setting up the data for the **VOC** scenario can be done either with manually converted VOC->COCO or with the data here:
+
+https://1drv.ms/u/s!Ako0GB-Fly5dgfcp-sBbUO-NE1k9cA?e=xcTCnw
+
+Furthermore, to use this VOC dataset  you might need to edit the builtin.py file which registers the VOC dataset via a register_coco_instances call. Editing that should be trivial.
 
 ### Generating the few-shots
 
