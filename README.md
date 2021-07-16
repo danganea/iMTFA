@@ -2,6 +2,9 @@
 
 This is the code for the paper "Incremental Few-Shot Instance Segmentation", presented at CVPR2021.
 
+[Link to paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Ganea_Incremental_Few-Shot_Instance_Segmentation_CVPR_2021_paper.pdf)  
+[Link to supplemental material](https://openaccess.thecvf.com/content/CVPR2021/supplemental/Ganea_Incremental_Few-Shot_Instance_CVPR_2021_supplemental.pdf)
+
 ```
 @InProceedings{Ganea_2021_CVPR,
     author    = {Ganea, Dan Andrei and Boom, Bas and Poppe, Ronald},
